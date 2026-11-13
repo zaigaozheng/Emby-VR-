@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rplayer.embybridge"
+    android:versionCode="7"
+    android:versionName="1.6">
+    <uses-sdk android:minSdkVersion="27" android:targetSdkVersion="35" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <package android:name="com.wangyuehuan.rplayer" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/launcher_icon"
+        android:roundIcon="@mipmap/launcher_icon"
+        android:label="rPlayer（Emby）"
+        android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".PlaybackActivity"
+            android:exported="true"
+            android:icon="@drawable/bridge_icon">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+        <activity-alias
+            android:name=".Launcher"
+            android:exported="true"
+            android:icon="@mipmap/launcher_icon"
+            android:targetActivity=".PlaybackActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+    </application>
+</manifest>
